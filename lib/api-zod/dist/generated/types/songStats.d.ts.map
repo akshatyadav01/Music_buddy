@@ -1,0 +1,1 @@
+{"version":3,"file":"songStats.d.ts","sourceRoot":"","sources":["../../../src/generated/types/songStats.ts"],"names":[],"mappings":"AAAA;;;;;;GAMG;AACH,OAAO,KAAK,EAAE,IAAI,EAAE,MAAM,QAAQ,CAAC;AAEnC,MAAM,WAAW,SAAS;IACxB,UAAU,EAAE,MAAM,CAAC;IACnB,gBAAgB;IAChB,aAAa,CAAC,EAAE,MAAM,GAAG,IAAI,CAAC;IAC9B,WAAW,EAAE,IAAI,EAAE,CAAC;CACrB"}
