@@ -1,0 +1,118 @@
+openapi: "3.1.0"
+info:
+  title: Api
+  version: "1.0.0"
+servers:
+  - url: /api
+
+paths:
+  /healthz:
+    get:
+      operationId: getHealth
+      summary: Health check
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  /songs:
+    get:
+      operationId: listSongs
+      summary: List songs
+      parameters:
+        - name: q
+          in: query
+          description: Search query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of songs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Song"
+
+  /songs/stats:
+    get:
+      operationId: getSongStats
+      summary: Get song library stats
+      responses:
+        "200":
+          description: Stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SongStats"
+
+  /songs/{id}:
+    get:
+      operationId: getSong
+      summary: Get a song by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Song
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Song"
+        "404":
+          description: Not found
+    delete:
+      operationId: deleteSong
+      summary: Delete a song
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      required: [status]
+      properties:
+        status:
+          type: string
+
+    Song:
+      type: object
+      required: [id, title, hasPoster, createdAt]
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        artist:
+          type: ["string", "null"]
+        duration:
+          type: ["number", "null"]
+        hasPoster:
+          type: boolean
+        createdAt:
+          type: string
+
+    SongStats:
+      type: object
+      required: [total, totalDuration]
+      properties:
+        total:
+          type: integer
+        totalDuration:
+          type: number
