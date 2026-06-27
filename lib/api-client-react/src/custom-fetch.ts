@@ -1,8 +1,11 @@
+const API_BASE = "/api";
+
 export const customFetch = async <T>(
   url: string,
   options: RequestInit
 ): Promise<T> => {
-  const response = await fetch(url, options);
+  const fullUrl = `${API_BASE}${url}`;
+  const response = await fetch(fullUrl, options);
 
   if (!response.ok) {
     const data = await response.json().catch(() => ({}));
