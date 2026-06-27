@@ -1,0 +1,12 @@
+{
+  "name": "workspace",
+  "private": true,
+  "scripts": {
+    "typecheck:libs": "tsc --build",
+    "typecheck": "pnpm run typecheck:libs && pnpm -r --filter='!workspace' run typecheck"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "typescript": "^5.9.3"
+  }
+}
